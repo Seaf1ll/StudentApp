@@ -43,12 +43,18 @@ class Masters(id: String, name: String, course: String) : Student(id, name, cour
     }
 }
 fun main() {
+    val students = mutableListOf<Student>()
+
     while (true) {
         println("Enter student type (undergraduate/masters) or 'quit' to exit:")
         val type = readln()
         if (type == "quit") break
+        else if (type != "undergraduate" && type != "masters") {
+            println("Error. $type is not valid")
+            break
+        }
 
-        println("Enter student name:")
+        println("Enter student's full name:")
         val name = readln()
 
         println("Enter student ID:")
@@ -69,8 +75,15 @@ fun main() {
         println("Enter mark for ${student.name}:")
         val markInput = readln().toDouble()
         student.mark = markInput
+
+        students.add(student)
+
         println("Student recorded: $student")
         println("Did the student pass? ${student.didPass()}")
         println("Grade: ${student.getGrade()}\n")
+    }
+    println("\nAll Students Entered")
+    for (s in students) {
+        println(s)
     }
 }
