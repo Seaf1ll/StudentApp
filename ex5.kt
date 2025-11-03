@@ -13,7 +13,6 @@ abstract class Student (val id: String, val name: String, val course: String) {
         return "Name: $name | Course: $course | Mark: $mark"
     }
 
-
     fun didPass(): Boolean {
         return mark >= 40
     }
