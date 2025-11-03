@@ -1,9 +1,19 @@
 package Week_1
 
-class Student (val id: String, val name: String, val course: String, val mark: Double) {
+class Student (val id: String, val name: String, val course: String) {
+    var mark: Double = 0.0
+        set(value) {
+            if (value in 0.0..100.0) {
+                field = value
+            } else {
+                println("Mark must be between 0 and 100.")
+            }
+        }
+
     override fun toString(): String {
         return "Name: $name | Course: $course | Mark: $mark"
     }
+
 
     fun didPass(): Boolean {
         return mark >= 40
@@ -23,10 +33,11 @@ fun main() {
         println("Enter course:\n")
         val course = readln()
 
-        println("Enter mark:\n")
-        val mark = readln().toDouble()
+        val student = Student(id, name, course)
+        println("Enter mark for ${student.name}:")
+        val markInput = readln().toDouble()
+        student.mark = markInput
 
-        val student = Student(id, name, course, mark)
         println("Student recorded: $student\n")
         println("Did the student pass? ${student.didPass()}\n")
     }
